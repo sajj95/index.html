@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone Camera Stream</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        video { width: 100%; max-width: 600px; border: 2px solid black; }
+        button { padding: 10px; font-size: 16px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Old Phone Camera Stream</h2>
+    <video id="video" autoplay playsinline></video>
+    <button onclick="startStreaming()">Start Camera</button>
 
+    <script>
+        async function startStreaming() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                document.getElementById('video').srcObject = stream;
+            } catch (error) {
+                alert("Camera access denied! Enable permissions.");
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
